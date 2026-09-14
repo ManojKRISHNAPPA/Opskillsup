@@ -19,7 +19,14 @@ pipeline{
             }
         }
 
-        // stage()
+        stage('plan'){
+            steps{
+                sh '''
+                    pwd
+
+                '''
+            }
+        }
     }
 
 }
