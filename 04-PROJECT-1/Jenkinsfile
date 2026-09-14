@@ -23,7 +23,10 @@ pipeline{
             steps{
                 sh '''
                     pwd
-
+                    cd 04-PROJECT-1/
+                    terraform init
+                    terraform plan -out tfplan
+                    terraform show -no-color tfplan > tfplan.txt
                 '''
             }
         }
