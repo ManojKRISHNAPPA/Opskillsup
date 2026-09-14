@@ -30,6 +30,22 @@ pipeline{
                 '''
             }
         }
+
+        stage('Approval'){
+            steps{
+                script{
+                    def plan = readFile '04-PROJECT-1/tfplan.txt'
+
+                    input(
+                        message: "Do you want to procede with the terraform actions..?",
+                        parameters: [
+                            text(name: 'planReview',description: 'Can you review your code',defaultValue: plan)
+                        ]
+
+                    )
+                }
+            }
+        }
     }
 
 }
