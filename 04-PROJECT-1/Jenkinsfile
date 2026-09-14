@@ -57,7 +57,7 @@ pipeline{
             steps{
                 script{
                     if (params.terraformAction =='apply') {
-                        sh "cd 04-PROJECT-1; terraform appply -input=false tfplan"
+                        sh "cd 04-PROJECT-1; terraform apply -input=false tfplan"
                     } else if (params.terraformAction =='destroy') {
                         sh "cd 04-PROJECT-1; terraform destroy -auto-approve"
                     }
