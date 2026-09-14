@@ -46,6 +46,25 @@ pipeline{
                 }
             }
         }
+
+        stage('Apply or Destroy'){
+            when{
+                expression{
+                    return params.terraformAction =='apply' || params.terraformAction == 'destroy'
+                }
+            }
+
+            steps{
+                script{
+                    if (params.terraformAction =='apply') {
+                        sh "cd 04-PROJECT-1; terraform appply -input=false tfplan"
+                    } else if (params.terraformAction =='destroy') {
+                        sh "cd 04-PROJECT-1; terraform destroy -auto-approve"
+                    }
+                
+                }
+            }
+        }
     }
 
 }
