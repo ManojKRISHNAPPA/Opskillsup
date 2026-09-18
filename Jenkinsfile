@@ -45,7 +45,7 @@ pipeline{
         stage('Deploy to Kubernetes'){
             steps{
                 sh '''
-                kubectl apply -f deployment.yaml -n ${NAMESPACE}
+                kubectl apply -f Deployment.yaml -n ${NAMESPACE}
                 '''
             }
         }
