@@ -46,7 +46,7 @@ pipeline{
             steps{
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'opskillup', contextName: '', credentialsId: 'kube', namespace: 'genai', serverUrl: 'https://6157A134C8100C4FCC2B7AF44399AC7D.gr7.ap-northeast-1.eks.amazonaws.com']]) {
                     sh '''
-                    
+                    sed -i "s|replace|${IMAGE_NAME}|g" Deployment.yaml
                     kubectl apply -f Deployment.yaml -n ${NAMESPACE}
                     '''
                 }
