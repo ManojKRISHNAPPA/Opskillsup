@@ -44,9 +44,12 @@ pipeline{
 
         stage('Deploy to Kubernetes'){
             steps{
-                sh '''
-                kubectl apply -f Deployment.yaml -n ${NAMESPACE}
-                '''
+                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'opskillup', contextName: '', credentialsId: 'kube', namespace: 'genai', serverUrl: 'https://6157A134C8100C4FCC2B7AF44399AC7D.gr7.ap-northeast-1.eks.amazonaws.com']]) {
+                    sh '''
+                    
+                    kubectl apply -f Deployment.yaml -n ${NAMESPACE}
+                    '''
+                }
             }
         }
     }
